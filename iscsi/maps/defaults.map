@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+defaults:
+  target:
+    pkgs:
+      - targetcli
+    service:
+      name: target.service
+      state: running
+      enable: True
+    conffile: '/etc/target/saveconfig.json'
+
+  initiator:
+    pkgs:
+      - iscsi-initiator-utils
+    service:
+      name: iscsi.service
+      state: running
+      enable: True
+    conffile: '/etc/iscsi/iscsid.conf'
+    initiatorname_file: '/etc/iscsi/initiatorname.iscsi'
+
+    conf:
+      #'without_section_pre':
+      #  iscsid.startup: /bin/systemctl start iscsid.socket iscsiuio.socket
+      #  node.startup: automatic
+      #  node.leading_login: No
+      #  node.session.timeo.replacement_timeout: 120
+      #  node.conn[0].timeo.login_timeout: 15
+      #  node.conn[0].timeo.logout_timeout: 15
+      #  node.conn[0].timeo.noop_out_interval: 5
+      #  node.conn[0].timeo.noop_out_timeout: 5
+      #  node.session.err_timeo.abort_timeout: 15
+      #  node.session.err_timeo.lu_reset_timeout: 30
+      #  node.session.err_timeo.tgt_reset_timeout: 30
+      #  node.session.initial_login_retry_max: 8
+      #  node.session.cmds_max: 128
+      #  node.session.queue_depth: 32
+      #  node.session.xmit_thread_priority: -20
+      #  node.session.iscsi.InitialR2T: No
+      #  node.session.iscsi.ImmediateData: Yes
+      #  node.session.iscsi.FirstBurstLength: 262144
+      #  node.session.iscsi.MaxBurstLength: 16776192
+      #  node.conn[0].iscsi.MaxRecvDataSegmentLength: 262144
+      #  node.conn[0].iscsi.MaxXmitDataSegmentLength: 0
+      #  discovery.sendtargets.iscsi.MaxRecvDataSegmentLength: 32768
+      #  node.conn[0].iscsi.HeaderDigest: None
+      #  node.session.nr_sessions: 1
+      #  node.session.iscsi.FastAbort: Yes
+      #  node.session.scan: auto
+      ##'[sect1]':
+      ##  opt1: value1
+      ##'[sect2]':
+      ##  opt2: value2
+      ##'without_section_post':
+      ##  opt-without-section-at-end-of-file-will-be-in-last-section: 'enabled'
