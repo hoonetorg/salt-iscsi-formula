@@ -3,6 +3,14 @@
 
 {% from "iscsi/map.jinja" import iscsi with context %}
 
+iscsi_initiator_config__initiatorname_file:
+  file.managed:
+    - name: {{ iscsi.initiator.initiatorname_file }}
+    - contents: InitiatorName={{ iscsi.initiator.initiatorname }}
+    - mode: "0644"
+    - user: root
+    - group: root
+
 iscsi_initiator_config__conffile:
   file.managed:
     - name: {{ iscsi.initiator.conffile }}
@@ -10,6 +18,6 @@ iscsi_initiator_config__conffile:
     - template: jinja
     - context:
       confdict: {{iscsi|json}}
-    - mode: 644
+    - mode: "0600"
     - user: root
     - group: root

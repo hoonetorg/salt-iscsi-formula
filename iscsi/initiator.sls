@@ -2,11 +2,15 @@
 # vim: ft=sls
 
 include:
-  - iscsi.initiator.install
-  - iscsi.initiator.config
-  - iscsi.initiator.service
+  - iscsi.initiator_install
+  - iscsi.initiator_config
+  - iscsi.initiator_service
 
 extend:
+  iscsi_initiator_config__initiatorname_file:
+    file:
+      - require:
+        - pkg: iscsi_initiator_install__pkg
   iscsi_initiator_config__conffile:
     file:
       - require:
@@ -15,5 +19,6 @@ extend:
     service:
       - watch:
         - file: iscsi_initiator_config__conffile
+        - file: iscsi_initiator_config__initiatorname_file
       - require:
         - pkg: iscsi_initiator_install__pkg

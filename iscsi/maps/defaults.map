@@ -20,6 +20,7 @@ defaults:
       enable: True
     conffile: '/etc/iscsi/iscsid.conf'
     initiatorname_file: '/etc/iscsi/initiatorname.iscsi'
+    initiatorname: 'iqn.2018-05.org.hoonet:{{ grains['id'].split('.')[0] }}'
 
     conf:
       #'without_section_pre':
