@@ -9,6 +9,7 @@ defaults:
       name: target.service
       state: running
       enable: True
+    saveconfig: True
     conffile: '/etc/target/saveconfig.json'
 
   initiator:

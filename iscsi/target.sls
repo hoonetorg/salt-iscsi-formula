@@ -9,17 +9,17 @@ include:
   - iscsi.target_service
 
 extend:
-  {% if iscsi.get('target', {}).get('targets', False) %}
-  iscsi_target_config__conffile:
-    file:
+  {% if iscsi.get('target', {}).get('backstores', False) or iscsi.get('target', {}).get('iscsis', False)  %}
+  iscsi_target__finished:
+    cmd:
       - require:
         - pkg: iscsi_target_install__pkg
   {% endif %}
   iscsi_target_service__service:
     service:
-      {% if iscsi.get('target', {}).get('targets', False) %}
+      {% if iscsi.get('target', {}).get('backstores', False) or iscsi.get('target', {}).get('iscsis', False)  %}
       - watch:
-        - file: iscsi_target_config__conffile
+        - cmd: iscsi_target__config
       {% endif %}
       - require:
         - pkg: iscsi_target_install__pkg
