@@ -116,5 +116,5 @@ iscsi_target__config:
 
 iscsi_target__finished:
   cmd.run:
-    - name: true
-    - unless: true
+    - name: "true"
+    - unless: "true"
